@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<style>
+        /* Estilo para centralizar o botão */
+        .center-button {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Protocolos de Ortopedia</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Função para mostrar ou esconder a div do PDF
+        function togglePdf() {
+            var pdfDiv = document.getElementById("pdfDiv");
+            var pdfEmbed = document.getElementById("pdfEmbed");
+
+            if (pdfDiv.style.display === "none") {
+                pdfDiv.style.display = "block";
+                pdfEmbed.src = "URL_DO_ARQUIVO_PDF";
+            } else {
+                pdfDiv.style.display = "none";
+            }
+        }
+
+        function mostrarCampoTexto() {
+            var protocoloSelecionado = document.getElementById("protocolo").value;
+            var campoTexto = document.getElementById("campoTexto");
+            var instrucoes = document.getElementById("instrucoes-" + protocoloSelecionado);
+
+            // Mostrar o campo de texto e as instruções do protocolo selecionado
+            if (protocoloSelecionado !== "") {
+                campoTexto.style.display = "block";
+
+                // Esconder todas as instruções
+                var todasInstrucoes = document.querySelectorAll("[id^=instrucoes-]");
+                for (var i = 0; i < todasInstrucoes.length; i++) {
+                    todasInstrucoes[i].style.display = "none";
+                }
+
+                // Mostrar as instruções do protocolo selecionado
+                instrucoes.style.display = "block";
+            } else {
+                campoTexto.style.display = "none";
+            }
+        }
+
+        function copiarTexto() {
+            var texto = document.getElementById("informacoes");
+            texto.select();
+            document.execCommand("copy");
+            alert("Texto copiado para a área de transferência!");
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Formulário de Protocolos de Ortopedia</h2>
+<div class="center-button">
+        <button class="btn btn-primary" onclick="togglePdf()">Mostrar/Esconder Protocolo Completo</button>
+    </div>
+
+<div d-flex justify-content-center" id="pdfDiv" style="display: none;">
+    <div class="form-group">
+        <embed src="ortop.pdf" type="application/pdf" width="100%" height="600px">
+    </div>
+</div>
+
+        <form action="" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="protocolo">Selecione o protocolo:</label>
+                    <select class="form-control" name="protocolo" id="protocolo" onchange="mostrarCampoTexto()">
+                        <option value="">Selecione...</option>
+                        <option value="1">Dor Lombar</option>
+                        <option value="2">Dor Cervical</option>
+                        <option value="3">Osteoartrite</option>
+                        <option value="4">Bursite ou Tendinite</option>
+                        <option value="5">Mão e Punho</option>
+                        <option value="6">Dor no Ombro</option>
+                        <option value="7">Dor no Joelho</option>
+                        <option value="8">Dor no Quadril</option>
+                        <option value="9">Patologias de Tornozelo e Pé</option>
+                        <option value="10">Fraturas e Luxações</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Instruções e campo de texto -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <!-- Instruções para Dor Lombar -->
+                    <div id="instrucoes-1" class="card" style="display: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Instruções para Dor Lombar:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Dor lombar com sinais de alerta, sem indicação de avaliação emergencial;</li>
+            <li>Síndrome radicular sem melhora clínica após 6 semanas de tratamento clínico otimizado;</li>
+            <li>Diagnóstico de estenose de canal lombar ou suspeita clínica (claudicação neurogênica);</li>
+            <li>Lombalgia de característica mecânica e diagnóstico de espondilolistese;</li>
+            <li>Dor lombar crônica inespecífica sem melhora após tratamento clínico otimizado por 6 meses.</li>
+            <li>Dor lombar crônica sem melhora após tratamento clínico otimizado (mais de 3 meses) com suspeita de associação com o trabalho.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas:
+                <ul>
+                    <li>Descrever características da dor, presença ou não de ciatalgia ou claudicação neurogênica, tempo de início e duração dos sintomas, fatores desencadeantes e de alívio;</li>
+                    <li>Presença de alterações em exame físico neurológico(sim ou não). Se sim, descreva;</li>
+                    <li>Outros sinais e sintomas relevantes (sintomas constitucionais);</li>
+                </ul>
+            </li>
+            <li>Tratamento em uso ou já realizado para dor lombar (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação);</li>
+            <li>Resultado de exame de imagem, com data (se realizado);</li>
+            <li>Presença de imunossupressão (sim ou não). Se sim, qual;</li>
+            <li>Se suspeita de neoplasia, descreva o motivo;</li>
+            <li>Osteoporose prévia (sim ou não). Se sim, descreva como foi feito o diagnóstico;</li>
+            <li>Associação do sintoma com atividade laboral (sim ou não). Se sim, descreva a atividade.</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Dor Cervical -->
+                    <div id="instrucoes-2" class="card" style="display: none;">
+                        <div class="card-body">
+                           <h5 class="card-title">Instruções para Dor Cervical:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Dor cervical com sinais de alerta, sem indicação de avaliação emergencial;</li>
+            <li>Diagnóstico de estenose de canal cervical ou mielopatia não operados em caráter emergencial;</li>
+            <li>Pacientes com cervicalgia e artrite reumatóide;</li>
+            <li>Dor cervical e sintomas de radiculopatia (dor irradiada para os braços, fraqueza, parestesia), sem resposta após 6 semanas de tratamento clínico otimizado;</li>
+            <li>Dor cervical crônica inespecífica sem melhora após tratamento clínico otimizado por 6 meses. Dor cervical crônica (mais de 3 meses) com suspeita de associação com o trabalho.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas:
+                <ul>
+                    <li>Descrever características da dor, presença de sintomas de radiculopatia cervical, tempo de início e duração dos sintomas, fatores desencadeantes e de alívio;</li>
+                    <li>Presença de alterações em exame físico neurológico (sim ou não). Se sim, descreva;</li>
+                    <li>Outros sinais e sintomas relevantes;</li>
+                </ul>
+            </li>
+            <li>Tratamento em uso ou já realizado para dor cervical (não-farmacológico, tipo e duração; 
+            Medicamentos utilizados com dose, posologia e resposta a medicação);</li>
+            <li>Resultado de exame de imagem, com data (se realizado);</li>
+            <li>Presença de imunossupressão ou artrite reumatóide (sim ou não). Se sim, qual? Se suspeita de neoplasia, descreva o motivo;</li>
+            <li>Osteoporose prévia (sim ou não). Se sim, descreva como foi feito o diagnóstico;</li>
+            <li>Associação do sintoma com atividade laboral (sim ou não). Se sim, descreva a atividade;</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Osteoartrite -->
+                    <div id="instrucoes-3" class="card" style="display: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Instruções para Osteoartrite:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Osteoartrite de quadril, joelho ou ombro com potencial indicação de cirurgia (sintomas de dor refratários ao tratamento clínico otimizado por 6 meses ou importante prejuízo para as atividades de vida diária);</li>
+            <li>Osteoartrite em mãos com deformidades que comprometam a função da mão;</li>
+            <li>Dor por osteoartrite sem melhora após tratamento clínico otimizado por 6 meses, sem indicação ou condição clínica para cirurgia.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Manifestações clínicas que sugiram o diagnóstico: 
+                <ul>
+                    <li>Dor articular (sim ou não). Se sim, quais articulações acometidas;</li>
+                    <li>Hipertrofia óssea na articulação (sim ou não). Se sim, articulações acometidas;</li>
+                    <li>Presença de rigidez matinal (sim ou não). Se sim, descreva duração;</li>
+                    <li>Presença de crepitação, quando sintoma em articulação de joelho (sim ou não);</li>
+                    <li>Outros sinais e sintomas relevantes (edema da articulação, calor local, deformidade articular);</li>
+                    <li>Presença de restrição de movimento/prejuízo funcional (sim ou não). Se sim, descreva.</li>
+                </ul>
+            </li>
+            <li>Resultado de exame de imagem, com data;</li>
+            <li>Resultado de velocidade de hemossedimentação (VSG/VHS), com data;</li>
+            <li>Índice de massa corporal (IMC);</li>
+            <li>Tratamento em uso ou já realizado para osteoartrite (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação);</li>
+            <li>Comorbidades associadas (psoríase, doença inflamatória intestinal e outras).</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Bursite ou Tendinite -->
+                    <div id="instrucoes-4" class="card" style="display: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Instruções para Bursite ou Tendinite:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Bursite ou tendinite sem resposta satisfatória ao tratamento não farmacológico (exercícios, acompanhamento fisioterápico) otimizado por um período de 6 meses;</li>
+            <li>Bursite ou tendinite há mais de 3 meses com suspeita de associação com o trabalho.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas:
+                <ul>
+                    <li>Descrever características da dor, tempo de evolução, fatores desencadeantes e de alívio;</li>
+                    <li>Presença de restrição de movimento/prejuízo funcional (sim ou não). Se sim, descreva;</li>
+                    <li>Resultado de exame de imagem da região envolvida, quando realizado, com data;</li>
+                    <li>História prévia de trauma local (sim ou não). Se sim, descreva;</li>
+                    <li>Associação do sintoma com atividade laboral (sim ou não). Se sim, descreva a atividade;</li>
+                    <li>Tratamento não farmacológico em uso ou já realizado para a dor periarticular (tipo e duração).</li>
+                </ul>
+            </li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Mão e Punho -->
+                    <div id="instrucoes-5" class="card" style="display: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">Instruções para Mão e Punho:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Ruptura tendínea não operada em caráter emergencial;</li>
+            <li>Cisto sinovial recorrente, ou com dor persistente, ou que cause prejuízo funcional;</li>
+            <li>Dedo em gatilho sem melhora com tratamento clínico otimizado;</li>
+            <li>Tenossinovite de De Quervain sem melhora com tratamento clínico otimizado;</li>
+            <li>Síndrome do túnel do carpo com déficit de força objetivo na mão e/ou atrofia tenar;</li>
+            <li>Síndrome do túnel com déficit sensitivo contínuo por 3 meses (persistente, que não apresenta períodos de melhora dos sintomas sensitivos);</li>
+            <li>Síndrome do túnel do carpo há mais de 6 meses sem resposta ao tratamento clínico otimizado (inclusive uso de órtese);</li>
+            <li>Problemas de mão e/ou punho há mais de 3 meses com suspeita de associação com o trabalho.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas (descrever características da dor, tempo de evolução, manobras de Tinel e Phalen (quando indicado), fatores desencadeantes e de alívio, outros sinais e sintomas relevantes);</li>
+            <li>Tratamento em uso ou já realizado para a condição (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação);</li>
+            <li>Associação do sintoma com atividade laboral (sim ou não). Se sim, descreva a atividade.</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Dor no Ombro -->
+                    <div id="instrucoes-6" class="card" style="display: none;">
+                        <div class="card-body">
+                           <h5 class="card-title">Instruções para Dor no Ombro:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Ruptura total de tendão do manguito rotador evidenciada em exame de imagem;</li>
+            <li>Ruptura parcial de tendão do manguito rotador em progressão ou com dor refratária ao tratamento clínico otimizado;</li>
+            <li>Dor no ombro refratária ao tratamento clínico otimizado por um período de 6 meses;</li>
+            <li>Osteoartrite de ombro (sintomas de dor refratários ao tratamento clínico otimizado por 6 meses ou importante prejuízo para as atividades de vida diária);</li>
+            <li>Luxação recorrente de ombro após avaliação em serviço de emergência;</li>
+            <li>Pacientes com dor no ombro há mais de 3 meses com suspeita de associação com o trabalho.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas;</li>
+            <li>Apresenta restrição de movimento/prejuízo funcional (sim ou não). Se sim, descreva;</li>
+            <li>Presença de luxação do ombro (sim ou não). Se sim, descreva quantidade de vezes;</li>
+            <li>Resultado de exame de imagem do ombro, com data;</li>
+            <li>História prévia de trauma local (sim ou não). Se sim, descreva;</li>
+            <li>Associação do sintoma com atividade laboral (sim ou não). Se sim, descreva;</li>
+            <li>Tratamento realizado para a dor no ombro (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação).</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Dor no Joelho -->
+                    <div id="instrucoes-7" class="card" style="display: none;">
+                        <div class="card-body">
+                           <h5 class="card-title">Instruções para Dor no Joelho:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Lesão ligamentar do joelho com potencial indicação cirúrgica;</li>
+            <li>Lesão meniscal com potencial indicação cirúrgica;</li>
+            <li>Suspeita clínica de lesão meniscal ou ligamentar;</li>
+            <li>Subluxação patelar recorrente refratária ao tratamento conservador;</li>
+            <li>Osteoartrite de joelho com potencial indicação de cirurgia (sintomas de dor refratários ao tratamento clínico otimizado por 6 meses ou importante prejuízo para as atividades de vida diária);</li>
+            <li>Dor no joelho sem melhora após tratamento clínico otimizado por 6 meses, sem indicação ou condição clínica para cirurgia;</li>
+            <li>Pacientes com dor no joelho há mais de 3 meses com suspeita de associação com o trabalho.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas (descrever presença de instabilidade, bloqueio articular, crepitação, tempo de evolução, manobras ortopédicas realizadas);</li>
+            <li>Apresenta restrição de movimento/prejuízo funcional (sim ou não). Se sim, descreva;</li>
+            <li>Investigação inicial com exame de imagem de joelho, com data (se osteoartrite);</li>
+            <li>História prévia de trauma local (sim ou não). Se sim, descreva;</li>
+            <li>Associação do sintoma com atividade laboral (sim ou não). Se sim, descreva;</li>
+            <li>Tratamento realizado para a dor no joelho (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação);</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Dor no Quadril -->
+                    <div id="instrucoes-8" class="card" style="display: none;">
+                        <div class="card-body">
+                             <h5 class="card-title">Instruções para Dor no Quadril:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Todos os casos de osteonecrose (necrose avascular ou asséptica);</li>
+            <li>Osteoartrite de quadril com potencial indicação de cirurgia (sintomas de dor refratários ao tratamento clínico otimizado por 6 meses ou importante prejuízo para as atividades de vida diária);</li>
+            <li>Dor no quadril sem melhora após tratamento clínico otimizado por 6 meses.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas:
+                <ul>
+                    <li>Apresenta restrição de movimento/prejuízo funcional (sim ou não). Se sim, descreva;</li>
+                </ul>
+            </li>
+            <li>Resultado de exame de imagem do quadril (radiografia), com data;</li>
+            <li>Tratamento realizado para osteoartrite de quadril (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação).</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Patologias de Tornozelo e Pé -->
+                    <div id="instrucoes-9" class="card" style="display: none;">
+                        <div class="card-body">
+                           <h5 class="card-title">Instruções para Patologias de Tornozelo e Pé:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Ruptura tendínea não operada em caráter emergencial;</li>
+            <li>Hálux valgo associado a dor recorrente ou prejuízo funcional refratário ao tratamento clínico otimizado;</li>
+            <li>Fasciíte plantar, patologias do coxim adiposo, síndrome do túnel do tarso ou metatarsalgia refratária ao tratamento clínico otimizado por 6 meses;</li>
+            <li>Dor no tornozelo ou pé sem melhora após tratamento clínico otimizado por 6 meses.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Sinais e sintomas:
+                <ul>
+                    <li>Apresenta prejuízo funcional (sim ou não). Se sim, descreva;</li>
+                </ul>
+            </li>
+            <li>Tratamento em uso ou já realizado para a condição (não-farmacológico, tipo e duração; e/ou medicamentos utilizados com dose, posologia e resposta a medicação).</li>
+        </ol>
+                        </div>
+                    </div>
+                    <!-- Instruções para Fraturas e Luxações -->
+                    <div id="instrucoes-10" class="card" style="display: none;">
+                        <div class="card-body">
+                           <h5 class="card-title">Instruções para Fraturas e Luxações:</h5>
+        <p><strong>Indicações:</strong></p>
+        <ol>
+            <li>Fratura manejada em serviço hospitalar e que apresenta deformidade ou prejuízo funcional, após tentativa de manejo conservador;</li>
+            <li>Fratura manejada em serviço de emergência ou referência de ortopedia que necessite retorno com especialista da rede por carta de contrarreferência.</li>
+        </ol>
+        <p><strong>Conteúdo descritivo mínimo:</strong></p>
+        <ol>
+            <li>Descrição da localidade da fratura e data;</li>
+            <li>Descrição do manejo realizado para fratura (imobilização, procedimento cirúrgico, tratamento fisioterápico);</li>
+            <li>Anexar carta de contrarreferência (se houver);</li>
+            <li>Apresenta deformidade ou prejuízo funcional (sim ou não). Se sim, descreva;</li>
+        </ol>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-6">
+                    <div id="campoTexto" class="card" style="display: none;">
+                        <div class="card-body">
+                            <label for="informacoes">Adicione as informações:</label>
+                            <textarea class="form-control" name="informacoes" id="informacoes" cols="30" rows="5"></textarea>
+                            <br>
+                            <button type="button" class="btn btn-primary" onclick="copiarTexto()">Copiar para Clipboard</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
